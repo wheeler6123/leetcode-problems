@@ -33,11 +33,9 @@ var duplicateZeros = function(arr) {
     const length = arrDupe.length;
     let count = 1;
     for(let i = 0; i<length; i++){
-        console.log(arrDupe[i], i)
         if(arrDupe[i]===0){
             arr.splice(i+count, 0, 0);
             count++;
-            console.log(arr)
         }
     }
     arr.splice(length)
