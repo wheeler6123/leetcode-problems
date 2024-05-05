@@ -49,10 +49,13 @@ all functions accept and return a single integer
  * @return {Function}
  */
 
-const compose = 
-		(fns) =>
-		(value) =>
-			fns.reduceRight((acc,f) => f(acc), value);
+var compose = function(functions) {
+    return function(x){
+        functions.length === 0 ? x : functions.reverse().forEach(fn => x = fn(x));
+
+        return x;
+    }
+};
 
 /**
  * const fn = compose([x => x + 1, x => 2 * x])
