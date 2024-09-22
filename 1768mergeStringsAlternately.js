@@ -50,4 +50,24 @@
  //    create an empty var to hold the merged string
  //    create the merged string, taking each char alternating from the two char arrays
 
+ const mergeAlternately = function(word1,word2){
+    let length = word1.length > word2.length ? word2.length : word1.length;
+    let remainder = '';
+    if(word1.length != word2.length){
+        if(word1.length > length){
+            remainder += word1.substring(length);
+        } else {
+            remainder += word2.substring(length);
+        }
+    }
+    let mergedString = '';
+    for(let i = 0; i < length; i++){
+        mergedString += word1[i];
+        mergedString += word2[i];
+    }
+    if(remainder.length > 0){
+        mergedString += remainder;
+    }
 
+    return mergedString;
+}
