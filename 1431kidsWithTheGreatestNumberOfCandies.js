@@ -41,13 +41,17 @@
  * @return {boolean[]}
  */
 
+// var kidsWithCandies = function(candies, extraCandies) {
+//     let result = [];
+//     const max = Math.max(...candies);
+
+//     for(let i = 0; i < candies.length; i++){
+//         result.push((candies[i] + extraCandies) >= max);
+//     }
+
+//     return result;
+// };
+
 var kidsWithCandies = function(candies, extraCandies) {
-    let result = [];
-    const max = Math.max(...candies);
-
-    for(let i = 0; i < candies.length; i++){
-        result.push((candies[i] + extraCandies) >= max);
-    }
-
-    return result;
-};
+    return candies.map((kid) => kid + extraCandies >= Math.max(...candies));
+}
