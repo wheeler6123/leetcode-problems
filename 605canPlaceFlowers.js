@@ -27,56 +27,75 @@
  * @return {boolean}
  */
 
-const checkAdjacent = (prev, next) => {
-    return (prev == 0 || prev == undefined) && (next == 0 || next == undefined);
-}
+// const checkAdjacent = (prev, next) => {
+//     return (prev == 0 || prev == undefined) && (next == 0 || next == undefined);
+// }
 
-var canPlaceFlowers = function(flowerbed, n) {
+// var canPlaceFlowers = function(flowerbed, n) {
+//     let count = 0;
+//     let i = 0;
+//     let j = 1;
+//     if(!flowerbed.length) return false;
+
+//     if(flowerbed.length < 3 && flowerbed.every(index => index == 0)){
+//         if(n < 2){
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     } 
+
+//     while(j <= flowerbed.length && count < n){
+//         if(i == 0 && flowerbed[i] == 0){
+//             if(flowerbed[j] == 0){
+//                 count++;
+//                 if(flowerbed[j+1] == 0){
+//                     i++;
+//                     j++;
+//                 } else {
+//                     i+=2;
+//                     j+=2;
+//                 }
+//             } else {
+//                 i+=2;
+//                 j+=2;
+//             }
+//         }
+//         if(flowerbed[j] == 0){
+//             if(checkAdjacent(flowerbed[i], flowerbed[j+1])){
+//                 count++;
+//                 i+=2;
+//                 j+=2;
+//             } else if (flowerbed[i] == 1){
+//                     i++;
+//                     j++;
+//             } else if (flowerbed[j+1] == 1){
+//                     i+=3;
+//                     j+=3;
+//             }
+//         } else {
+//             i+=2;
+//             j+=2;
+//        }    
+//     }
+//     return count >= n;
+// }; 
+
+const canPlaceFlowers = function(flowerbed, n){
     let count = 0;
-    let i = 0;
-    let j = 1;
-    if(!flowerbed.length) return false;
+    for(let i = 0; i < flowerbed.length; i++){
+        if(flowerbed[i] == 0){
+            let emptyLeft = i == 0 || flowerbed[i-1] == 0;
+            let emptyRight = i == flowerbed.length - 1 || flowerbed[i+1] == 0;
 
-    if(flowerbed.length < 3 && flowerbed.every(index => index == 0)){
-        if(n < 2){
-            return true;
-        } else {
-            return false;
-        }
-    } 
-
-    while(j <= flowerbed.length && count < n){
-        if(i == 0 && flowerbed[i] == 0){
-            if(flowerbed[j] == 0){
+            if(emptyLeft && emptyRight){
+                flowerbed[i] = 1;
                 count++;
-                if(flowerbed[j+1] == 0){
-                    i++;
-                    j++;
-                } else {
-                    i+=2;
-                    j+=2;
+                if(count >= n){
+                    return true;
                 }
-            } else {
-                i+=2;
-                j+=2;
             }
         }
-        if(flowerbed[j] == 0){
-            if(checkAdjacent(flowerbed[i], flowerbed[j+1])){
-                count++;
-                i+=2;
-                j+=2;
-            } else if (flowerbed[i] == 1){
-                    i++;
-                    j++;
-            } else if (flowerbed[j+1] == 1){
-                    i+=3;
-                    j+=3;
-            }
-        } else {
-            i+=2;
-            j+=2;
-       }    
     }
     return count >= n;
-}; 
+}
