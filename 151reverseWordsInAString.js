@@ -36,8 +36,12 @@
  */
 
 
-var reverseWords = function(s) {
-    let splitS = s.split(' ');
-    let onlyWords = splitS.filter((el) => el.length >= 1);
-    return onlyWords.reverse().join(' ');
-};
+// var reverseWords = function(s) {
+//     let splitS = s.split(' ');
+//     let onlyWords = splitS.filter((el) => el.length >= 1);
+//     return onlyWords.reverse().join(' ');
+// };
+
+const reverseWords = function(s) {
+    return s.split(' ').filter((el) => el.length >= 1).reverse().join(' ');
+}
